@@ -2,6 +2,7 @@ package com.mysearch.Controller;
 
 import com.mysearch.Entity.Response.ResponseBody;
 import com.mysearch.Entity.RequestBody.SearchData;
+import com.mysearch.Entity.Response.ResponseBodyFactory;
 import com.mysearch.Service.Impl.SearchServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.crypto.hash.Hash;
@@ -23,10 +24,7 @@ public class SearchController {
     private SearchServiceImpl searchService;
 
     @RequestMapping("/searching")
-    public ResponseBody test(@RequestBody SearchData searchData) {
-        String return_url = searchService.getURL(searchData);
-        Map<String, Object> data = new HashMap<>();
-        data.put("url", return_url);
-        return new ResponseBody("200", "访问成功", data);
+    public ResponseBody searching(@RequestBody SearchData searchData) {
+        return searchService.searchProcess(searchData);
     }
 }

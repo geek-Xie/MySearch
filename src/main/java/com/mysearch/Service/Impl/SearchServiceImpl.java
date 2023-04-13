@@ -1,6 +1,8 @@
 package com.mysearch.Service.Impl;
 
 import com.mysearch.Entity.RequestBody.SearchData;
+import com.mysearch.Entity.Response.ResponseBody;
+import com.mysearch.Entity.Response.ResponseBodyFactory;
 import com.mysearch.Entity.SearchHistory;
 import com.mysearch.Mapper.SearchMapper;
 import com.mysearch.Service.SearchService;
@@ -40,5 +42,13 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<SearchHistory> historyList(String user_email) {
         return searchMapper.getHistory(user_email);
+    }
+
+    @Override
+    public ResponseBody searchProcess(SearchData searchData) {
+        String return_url = getURL(searchData);
+        Map<String, Object> data = new HashMap<>();
+        data.put("url", return_url);
+        return ResponseBodyFactory.buildResponseBody("200", "访问成功", data);
     }
 }

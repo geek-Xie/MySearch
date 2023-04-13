@@ -1,5 +1,6 @@
 package com.mysearch.Service;
 
+import com.mysearch.Entity.RequestBody.LoginData;
 import com.mysearch.Entity.Response.ResponseBody;
 import com.mysearch.Entity.User;
 
@@ -11,4 +12,8 @@ public interface UserService {
     ResponseBody registerUser(User user);
 
     User getUserByEmail(String user_email);
+
+    ResponseBody loginProcess(LoginData loginData);
+
+    ResponseBody getSearchHistory(String user_email);
 }

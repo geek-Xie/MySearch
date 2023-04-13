@@ -19,5 +19,8 @@ public interface UserMapper {
     @Select("select * from user where user_email = #{user_email}")
     User getUserByEmail(String user_email);
 
+    @Select("select image_url from user where user_email = #{user_email}")
+    String getImageUrlByEmail(String user_email);
+
 
 }
