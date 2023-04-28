@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
@@ -30,10 +31,11 @@ public class ImageServiceImpl implements ImageService {
     public ResponseBody uploadImage(MultipartFile file, HttpServletRequest req) {
         // 放在本地项目 目录
         String filePath = System.getProperties().getProperty("user.dir");
-        if (System.getProperties().getProperty("os.name").startsWith("windows")) {
+        if (System.getProperties().getProperty("os.name").toLowerCase(Locale.ROOT).startsWith("windows")) {
             filePath = filePath + "\\src\\main\\resources\\static\\img";
-        } else if (System.getProperties().getProperty("os.name").startsWith("mac")) {
+        } else if (System.getProperties().getProperty("os.name").toLowerCase().startsWith("mac")) {
             filePath = filePath + "/src/main/resources/static/img";
+            System.out.println(filePath);
         }
         File folder = new File(filePath);
 
